@@ -3,7 +3,7 @@
     "displayName": "Jbeam Syntax Highlighting",
     "version": "0.4.0",
     "description": "A very basic syntax highlighter for BeamNG .jbeam files",
-    "publisher": "Useful Artifacts",
+    "publisher": "useful-artifacts",
     "private": true,
     "author": {
         "name": "Lukas Sondell",
