@@ -1,0 +1,104 @@
+{
+    "name": "jbeam-syntax",
+    "displayName": "Jbeam Syntax Highlighting",
+    "version": "0.4.0",
+    "description": "A very basic syntax highlighter for BeamNG .jbeam files",
+    "publisher": "Useful Artifacts",
+    "private": true,
+    "author": {
+        "name": "Lukas Sondell",
+        "email": "sondelln@gmail.com",
+        "url": "https://github.com/sondelll"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Code-by-NXT/jbeam-syntax"
+    },
+    "bugs": {
+        "url": "https://github.com/Code-by-NXT/jbeam-syntax/issues",
+        "email": "sondelln@gmail.com"
+    },
+    "keywords": [
+        "syntax",
+        "language support"
+    ],
+    "categories": [
+        "Programming Languages"
+    ],
+    "main": "./out/src/extension.js",
+    "icon": "assets/logo.png",
+    "engines": {
+        "vscode": "^1.80.0"
+    },
+    "activationEvents": [],
+    "contributes": {
+        "languages": [
+            {
+                "id": "jbeam",
+                "aliases": [
+                    "Jbeam",
+                    "jbeam"
+                ],
+                "extensions": [".jbeam"],
+                "configuration": "./language-configuration.json",
+                "icon": {
+                    "light": "./assets/jbeam_icon_universal.png",
+                    "dark": "./assets/jbeam_icon_universal.png"}
+            }
+        ],
+        "grammars": [
+            {
+                "language": "jbeam",
+                "scopeName": "source.jbeam",
+                "path": "./syntaxes/jbeam.tmGrammar.json"
+            }
+        ]
+    },
+    "simple-git-hooks": {
+        "pre-commit": "",
+        "pre-push": ""
+    },
+    "scripts": {
+        "vscode:prepublish": "pnpm esbuild:base --minify",
+        "preinstall": "npx only-allow pnpm",
+        "postinstall": "stale-dep -u",
+        "prepare": "simple-git-hooks",
+        "clean": "npx rimraf -rf ./out",
+        "esbuild:base": "stale-dep && pnpm run yamlconvert && tsx scripts/esbuild.ts",
+        "esbuild:watch": "pnpm esbuild:base --sourcemap --watch",
+        "esbuild:analyze": "pnpm esbuild:base --minify --metafile --analyze && esbuild-visualizer --metadata ./meta.json --open",
+        "compile:test": "pnpm clean && tsc -b ./test/tsconfig.json",
+        "lint": "eslint src --ext ts",
+        "test": "stale-dep && pnpm compile:test && node ./out/test/runTests.js",
+        "package": "vsce package --no-dependencies",
+        "release": "",
+        "publish:vs-marketplace": "vsce publish --no-dependencies",
+        "publish:open-vsx": "ovsx publish --no-dependencies",
+        "yamlconvert": "pnpm run grammarconvert && pnpm run themeconvert",
+        "grammarconvert": "npx js-yaml syntaxes/jbeam.tmLanguage.yaml > syntaxes/jbeam.tmGrammar.json",
+        "themeconvert": "npx js-yaml themes/jbeam.tmTheme.yaml > themes/jbeam.tmTheme.json"
+    },
+    "devDependencies": {
+        "@types/glob": "^8.1.0",
+        "@types/mocha": "^10.0.1",
+        "@types/node": "^18.16.19",
+        "@types/vscode": "^1.80.0",
+        "@vscode/test-electron": "^2.3.3",
+        "@vscode/vsce": "^2.19.0",
+        "esbuild": "^0.18.11",
+        "esbuild-visualizer": "^0.4.1",
+        "eslint": "^8.44.0",
+        "glob": "^10.3.2",
+        "js-yaml": "^4.1.0",
+        "lint-staged": "^13.2.3",
+        "mocha": "^10.2.0",
+        "ovsx": "^0.8.2",
+        "prettier": "^3.0.0",
+        "rimraf": "^5.0.1",
+        "simple-git-hooks": "^2.8.1",
+        "stale-dep": "^0.6.2",
+        "tsx": "^3.12.7",
+        "typescript": "^5.1.6"
+    }
+}

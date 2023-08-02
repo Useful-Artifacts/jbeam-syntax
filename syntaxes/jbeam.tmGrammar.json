@@ -1,0 +1,93 @@
+{
+  "scopeName": "source.jbeam",
+  "patterns": [
+    {
+      "include": "#jbeamExpression"
+    }
+  ],
+  "repository": {
+    "jbeamExpression": {
+      "patterns": [
+        {
+          "include": "#doubleComma"
+        },
+        {
+          "include": "#keyString"
+        },
+        {
+          "include": "#contentNumber"
+        },
+        {
+          "include": "#contentString"
+        },
+        {
+          "include": "#bool"
+        },
+        {
+          "include": "#dictExpression"
+        },
+        {
+          "include": "#comment"
+        }
+      ]
+    },
+    "dictExpression": {
+      "begin": "\\{",
+      "beginCaptures": {
+        "0": "meta.object-literal.key"
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": "meta.object-literal.key"
+      },
+      "patterns": [
+        {
+          "include": "#jbeamExpression"
+        }
+      ]
+    },
+    "keyValue": {
+      "begin": "(\\s*\"[A-Za-z0-9_-]*)\"\\s?:)",
+      "beginCaptures": {
+        "0": "meta.object-literal.key"
+      },
+      "end": "\\n",
+      "endCaptures": {
+        "0": "meta.object-literal.key"
+      },
+      "patterns": [
+        {
+          "include": "#contentNumber"
+        },
+        {
+          "include": "#contentString"
+        }
+      ]
+    },
+    "keyString": {
+      "match": "(\"[A-Za-z0-9_-]*\"(?=\\s*:))",
+      "name": "meta.object-literal.key"
+    },
+    "contentNumber": {
+      "match": "([:, ])\\s*([-]?[0-9]+([.][0-9]+)?(?=[, \\]\\}\\n]))",
+      "name": "constant.numeric"
+    },
+    "contentString": {
+      "begin": "\"",
+      "end": "\"",
+      "name": "string.quoted"
+    },
+    "doubleComma": {
+      "match": "(,,)",
+      "name": "invalid.illegal"
+    },
+    "bool": {
+      "match": "(true|false)",
+      "name": "constant.language.boolean"
+    },
+    "comment": {
+      "match": "(//.*)",
+      "name": "comment.line"
+    }
+  }
+}

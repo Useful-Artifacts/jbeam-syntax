@@ -1,0 +1,24 @@
+out
+node_modules
+.vscode-test/
+*.vsix
+
+# Because testing. 
+example_files/
+
+# Because fun to know so.. Yeah.
+.VSCodeCounter/
+
+
+# OS related
+.DS_Store
+*.log
+
+# NPM cache
+node_modules/
+package-lock.json
+
+
+# esbuild-visualizer
+meta.json
+stats.html
