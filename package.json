@@ -1,7 +1,7 @@
 {
     "name": "jbeam-syntax",
     "displayName": "Jbeam Syntax Highlighting",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "description": "A very basic syntax highlighter for BeamNG .jbeam files",
     "publisher": "useful-artifacts",
     "private": true,
@@ -13,10 +13,10 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Code-by-NXT/jbeam-syntax"
+        "url": "https://github.com/Useful-Artifacts/jbeam-syntax"
     },
     "bugs": {
-        "url": "https://github.com/Code-by-NXT/jbeam-syntax/issues",
+        "url": "https://github.com/Useful-Artifacts/jbeam-syntax/issues",
         "email": "sondelln@gmail.com"
     },
     "keywords": [
