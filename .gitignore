@@ -22,3 +22,4 @@ package-lock.json
 # esbuild-visualizer
 meta.json
 stats.html
+*.jbeam

@@ -1,7 +1,7 @@
 {
     "name": "jbeam-syntax",
     "displayName": "Jbeam Syntax Highlighting",
-    "version": "0.4.1",
+    "version": "0.4.6",
     "description": "A very basic syntax highlighter for BeamNG .jbeam files",
     "publisher": "useful-artifacts",
     "private": true,
@@ -44,7 +44,8 @@
                 "configuration": "./language-configuration.json",
                 "icon": {
                     "light": "./assets/jbeam_icon_universal.png",
-                    "dark": "./assets/jbeam_icon_universal.png"}
+                    "dark": "./assets/jbeam_icon_universal.png"
+                }
             }
         ],
         "grammars": [
