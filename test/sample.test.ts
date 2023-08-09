@@ -2,6 +2,8 @@ import { strictEqual } from 'node:assert';
 
 import vscode from 'vscode';
 
+
+// TODO: Actually write some proper tests...
 describe('#test sample', () => {
     before(() => {
         vscode.window.showInformationMessage('Test begin!');

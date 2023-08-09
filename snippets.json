@@ -71,7 +71,8 @@
                 "\t\t\t[\"f1r\", \"refU\"],",
                 "\t\t\t[\"f1l\", \"refU\"],",
             "\t\t],"
-        ]
+        ],
+        "description":"The beams field, with header and attributes."
       },
       "nodes":{
         "scope": "jbeam",

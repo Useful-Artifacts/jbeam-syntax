@@ -1,7 +1,7 @@
 {
     "name": "jbeam-syntax",
     "displayName": "Jbeam Syntax",
-    "version": "0.4.6",
+    "version": "0.5.0",
     "description": "A very basic syntax highlighter for BeamNG .jbeam files",
     "publisher": "useful-artifacts",
     "private": true,
