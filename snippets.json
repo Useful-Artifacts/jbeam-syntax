@@ -1,0 +1,147 @@
+{
+    "boilerplate": {
+        "scope": "jbeam",
+        "prefix": "boil",
+        "body": [
+            "{",
+                "\t\"newBeam\":{",
+                    "\t\t\"information\":{",
+                        "\t\t\t\"authors\":\"MrBeam\",",
+                        "\t\t\t\"name\":\"New Beam\",",
+                        "\t\t\t\"value\":420,",
+                    "\t\t},",
+                    "\t\t\"slotType\":\"newBeamType\",",
+                    "\t\t\"slots\":[",
+                        "\t\t\t[\"type\", \"default\", \"description\"],",
+                        "\t\t\t//[\"anotherBeamType\", \"someOtherJbeam\", \"Gavril Supercharger.. Adapter?\"],",
+                    "\t\t],",
+                    "\t\t\"scaleDrafCoef\":1.0,",
+                    "\t\t\"variables\":[",
+                    "\t\t\t[\"name\", \"type\", \"unit\", \"category\", \"default\", \"min\", \"max\", \"title\", \"description\"]",
+                    "\t\t],",
+                    "\t\t\"controller\":[",
+                        "\t\t\t[\"fileName\"],",
+                        "\t\t\t[\"vehicleController\"],",
+                    "\t\t],",
+                "\t},",
+            "}"
+        ],
+        "description":"Some boilerplate for a jbeam."
+      },
+      "flexbodies":{
+        "scope":"jbeam",
+        "prefix":"flx",
+        "body":[
+            "\t\t\"flexbodies\":[",
+                "\t\t\t[\"mesh\", \"[group]:\", \"nonFlexMaterials\"],",
+            "\t\t],"
+        ],
+        "description":"The flexbodies field, with header."
+      },
+      "beams":{
+        "scope":"jbeam",
+        "prefix":"bms",
+        "body":[
+            "\t\t\"beams\":[",
+                "\t\t\t[\"id1:\", \"id2:\"],",
+                "\t\t\t{\"beamType\":\"NORMAL\", \"beamSpring\":4300000, \"beamDamp\":580},",
+                "\t\t\t{\"beamStrength\":FLT_MAX, \"beamDeform\":220000, \"beamPrecompression\":1.0},",
+                "\t\t\t{\"beamPrecompressionTime\": 3, \"breakGroup\":\"\", \"breakGroupType\": 0},",
+            "\n\t\t// NOTE! PRECOMPRESSION RANGE OVERRIDES BEAMPRECOMPRESSION",
+                "\t\t\t//{\"precompressionRange\":0.0},",
+                "\n\t\t\t// {\"dampCutoffHz\":4}, // NOTE! IMPACTS GAME PERFORMANCE",
+                "\n\t\t\t//{\"deformLimit\": 1, \"deformLimitExpansion\": 1},",
+                "\t\t\t{\"deformGroup\":\"\", \"deformTriggerRatio\":0.2, \"\":\"\"},",
+                "\t\t\t{\"\":\"\", \"\":\"\", \"\":\"\"},",
+            "\n\t\t// SOUND RELATED",
+                "\t\t\t// {\"soundFile\":\"\", \"colorFactor\":0.5},",
+                "\t\t\t// {\"attackFactor\": 10, \"volumeFactor\":1},",
+                "\t\t\t// {\"decayFactor\": 10, \"pitchFactor\":0, \"maxStress\": 35000},",
+            "\n\t\t// MISC STUFF",
+                "\t\t\t// {\"optional\": false},",
+                "\t\t\t// {\"name\":\"\"},",
+            "\n\t\t// MAKE REFNODE CLUSTER",
+                "\t\t\t[\"refC\", \"refB\"],",
+                "\t\t\t[\"refC\", \"refU\"],",
+                "\t\t\t[\"refC\", \"refL\"],",
+                "\t\t\t[\"refL\", \"refB\"],",
+            "\n\t\t// CONNECT FRONT TO CLUSTER",
+                "\n\t\t\t[\"f1r\", \"refC\"],",
+                "\t\t\t[\"f1l\", \"refC\"],",
+                "\t\t\t[\"f1r\", \"refU\"],",
+                "\t\t\t[\"f1l\", \"refU\"],",
+            "\t\t],"
+        ]
+      },
+      "nodes":{
+        "scope": "jbeam",
+        "prefix": "nod",
+        "body": [
+            "\t\t\"refNodes\":[",
+                "\t\t\t[\"ref:\", \"back:\", \"left:\", \"up:\", \"leftCorner:\", \"rightCorner:\"],",
+                "\t\t\t[\"c1c\", \"r1c\", \"c1l\", \"c2c\", \"f1l\", \"f1r\"],",
+            "\t\t],",
+            "\t\t\"nodes\":[",
+                "\t\t\t[\"id\", \"posX\", \"posY\", \"posZ\"],",
+            "\t\t// GENERIC ATTRIBUTES",
+                "\t\t\t{\"nodeWeight\": 25, \"frictionCoef\": 1, \"nodeMaterial\": \"|METAL\" \"fixed\":false},",
+                "\t\t\t{\"collision\":true, \"selfCollision\": false, \"staticCollision\":true},",
+                "\t\t\t{\"breakGroup\":\"\", \"tag\":\"\"},",
+            "\n\t\t// FOR COUPLING N STUFF",
+                "\t\t\t{\"couplerStrength\":FLT MAX, \"couplerTag\": \"\", \"couplerRadius\":0.5},",
+                "\t\t\t{\"couplerLock\":false, \"couplerWeld\": false},",
+            "\n\t\t// SOUND OVERRIDES",
+                "\t\t\t// {\"impactGenericEvent\":\"\", \"impactMetalEvent\":\"\", \"impactPlasticEvent\":\"\"},",
+            "\n\t\t// USED BY TIRES",
+                "\t\t\t// {\"noLoadCoef\": 1.0, \"fullLoadCoef\": 1.0},",
+                "\t\t\t// {\"stribeckExponent\": 1.75, \"stribeckVelMult\": 1},",
+                "\t\t\t// {\"softnessCoef\": 0.6, \"treadCoef\": 1},",
+                "\t\t\t// {\"loadSensitivitySlope\": 1.0}, // Actual default unclear. Use with caution.",
+            "\n\t\t// FRONT",
+                "\t\t\t[\"refC\", 0, 0, 0.0],",
+                "\t\t\t[\"refB\", 0, 0.25, 0.0],",
+                "\t\t\t[\"refU\", 0, 0, 0.25],",
+                "\t\t\t[\"f1r\", -0.25, -0.25, 0.0],",
+                "\t\t\t[\"f1l\", 0.25, -0.25, 0.0],",
+            "\t\t],"
+        ],
+        "description":"Nodes and all attributes you could ever want or need."
+      },
+      "triangles":{
+        "scope": "jbeam",
+        "prefix": "tri",
+        "body": [
+            "\t\t\"triangles\":[",
+                "\t\t\t[\"id1:\", \"id2:\", \"id3:\"],",
+                "\t\t\t[\"f1r\", \"f1l\", \"refU\"],",
+            "\t\t],"
+        ],
+        "description":"Triangles.. Naturally."
+    },
+    "props":{
+        "scope":"jbeam",
+        "prefix":"prp",
+        "body":[
+            "\t\t\"props\":[",
+                "\t\t\t[\"func\", \"mesh\", \"idRef:\", \"idX:\", \"idY:\", \"baseRotation\", \"rotation\", \"translation\", \"min\", \"max\", \"offset\", \"multiplier\"],",
+                "\t\t\t{\"optional\":false},",
+            "\t\t],"
+        ],
+        "description":"A prop field with the header included"
+    },
+    "misc":{
+        "scope":"jbeam",
+        "prefix":"msc",
+        "body":[
+            "\t\t\"glowMap\":{",
+            "\t\t},",
+            "\t\t\"powertrain\":[",
+            "\t\t],",
+            "\t\t\"gearbox\":{",
+            "\t\t},",
+            "\t\t\"vehicleController\":{",
+            "\t\t},"
+        ],
+        "description":"Power, transmission, some of that stuff."
+    }
+}

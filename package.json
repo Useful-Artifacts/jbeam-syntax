@@ -47,6 +47,12 @@
                 "scopeName": "source.jbeam",
                 "path": "./syntaxes/jbeam.tmGrammar.json"
             }
+        ],
+        "snippets": [
+            {
+                "language": "jbeam",
+                "path": "./snippets.json"
+            }
         ]
     },
     "extensionDependencies": [
