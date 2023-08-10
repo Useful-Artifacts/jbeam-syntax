@@ -1,7 +1,7 @@
 {
     "name": "jbeam-syntax",
     "displayName": "Jbeam Syntax",
-    "version": "0.5.0",
+    "version": "0.5.1",
     "description": "A very basic syntax highlighter for BeamNG .jbeam files",
     "publisher": "useful-artifacts",
     "private": true,
@@ -78,9 +78,8 @@
         "release": "",
         "publish:vs-marketplace": "vsce publish --no-dependencies",
         "publish:open-vsx": "ovsx publish --no-dependencies",
-        "yamlconvert": "pnpm run grammarconvert && pnpm run themeconvert",
-        "grammarconvert": "npx js-yaml syntaxes/jbeam.tmLanguage.yaml > syntaxes/jbeam.tmGrammar.json",
-        "themeconvert": "npx js-yaml themes/jbeam.tmTheme.yaml > themes/jbeam.tmTheme.json"
+        "yamlconvert": "pnpm run grammarconvert",
+        "grammarconvert": "npx js-yaml syntaxes/jbeam.tmLanguage.yaml > syntaxes/jbeam.tmGrammar.json"
     },
     "devDependencies": {
         "@types/glob": "^8.1.0",
