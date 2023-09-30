@@ -2,15 +2,23 @@ import { TextDocumentChangeEvent } from "vscode";
 import * as vscode from "vscode";
 
 import { jbeamDocPreprocess, uncomment } from "./utils";
+import { parseWithPointers } from "@stoplight/json";
 
 export function jbeamDocChangeHandler(
   textDoc: vscode.TextDocumentChangeEvent,
   outChannel: any,
-  diagnosticCollection: vscode.DiagnosticCollection
+  diagnosticCollection: vscode.DiagnosticCollection,
+  cleanData: any
 ) {
   if (!textDoc.document.uri.fsPath.endsWith(".jbeam")) return;
-  if (textDoc.contentChanges.length < 1) return;
+  if (textDoc.contentChanges.length < 1 && diagnosticCollection.has(textDoc.document.uri)) return;
   
+  runDiagnostics(textDoc, diagnosticCollection);
+}
+
+
+
+function runDiagnostics(textDoc: vscode.TextDocumentChangeEvent, diagnosticCollection: vscode.DiagnosticCollection) {
   diagnosticCollection.clear();
   let diagnosticsArray: vscode.Diagnostic[] = [];
   let text = jbeamDocPreprocess(textDoc.document);

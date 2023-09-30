@@ -64,7 +64,30 @@
                 "language": "jbeam",
                 "path": "./snippets.json"
             }
-        ]
+        ],
+        "commands":[
+            {
+                "command": "jbeam-syntax.dumpInternalData",
+                "title": "Jbeam: Dump internal data"
+            }
+        ],
+        "viewsContainers": {
+            "activitybar": [
+              {
+                "id": "jbeam-syntax_mod-menu",
+                "title": "Mod Menu",
+                "icon": "assets/jbeam_icon_universal.png"
+              }
+            ]
+          },
+          "views": {
+            "jbeam-syntax_mod-menu": [
+              {
+                "id": "mod-outline",
+                "name": "Outline"
+              }
+            ]
+          }
     },
     "simple-git-hooks": {
         "pre-commit": "",
@@ -110,5 +133,8 @@
         "stale-dep": "^0.6.2",
         "tsx": "^3.12.7",
         "typescript": "^5.1.6"
+    },
+    "dependencies": {
+        "@stoplight/json": "^3.21.0"
     }
 }

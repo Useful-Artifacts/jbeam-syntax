@@ -1,3 +1,4 @@
+import { parseWithPointers } from '@stoplight/json';
 import * as vscode from 'vscode';
 
 export function jbeamDocPreprocess(doc: vscode.TextDocument): string{
@@ -10,6 +11,16 @@ export function jbeamDocPreprocess(doc: vscode.TextDocument): string{
       outText += uncomment(line) + "\n";
   }
   return outText;
+}
+
+export function populateCleanData(cleanData: any): void {
+  vscode.workspace.textDocuments.forEach((doc) => {
+    if (doc.fileName.endsWith(".jbeam")) {
+      let parsed = parseWithPointers(
+        jbeamDocPreprocess(doc));
+      cleanData[doc.uri.toString()] = parsed.data;
+    }
+  });
 }
 
 export function linePreProcess(line:string): string {

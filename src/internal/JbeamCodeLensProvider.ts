@@ -8,44 +8,44 @@ import {
   workspace,
   Uri,
   ProviderResult,
-  window
+  window,
+  extensions
 } from "vscode";
-import { linePreProcess, uncomment } from "./utils";
+import { linePreProcess, populateCleanData } from "./utils";
 
 export class JbeamCodeLensProvider implements CodeLensProvider {
   document?: TextDocument;
-  
+  cleanData: any;
+
+  constructor(cleanData: any) {
+    this.cleanData = cleanData;
+  }
+
   provideCodeLenses(
     document: TextDocument,
     token: CancellationToken
   ): ProviderResult<CodeLens[]> {
+    return [];
+    
+    if (token.isCancellationRequested) return;
     this.document = document;
+
     const lenses: CodeLens[] = [];
-    for (let i = 0; i < document.lineCount; i++) {
-      const line = document.lineAt(i);
-      let result = this.analyzeLine(line.text, i);
-      if (result !== null) {
-        lenses.push(result);
+    let cleanDoc = this.cleanData.get(document.uri);
+    if (!cleanDoc) populateCleanData(this.cleanData);
+    cleanDoc = this.cleanData.get(document.uri);
+    cleanDoc.keys.forEach((key: string) => {
+      if (key.startsWith("slotType")) {
+        let slotType = cleanDoc.get(key);
+        if (slotType) {
+          let lens = this.slotTypeReferencesLens(slotType.line, slotType.value);
+          if (lens) lenses.push(lens);
+        }
       }
-    };
+    });
     return lenses;
   }
-  analyzeLine(line: string, lineNumber: number): CodeLens | null {
-    if (line.trim().startsWith("//")) {
-      return null;
-    }
-    if (line.search("//") !== -1) {
-      line = line.slice(0, line.search("//"));
-      if (line.trim() === "") {
-        return null;
-      }
-    }
-    if (line.trim().startsWith('"slotType"')) {
-      return this.slotTypeReferencesLens(lineNumber, line);
-    }
-    return null;
-  }
-  
+
   slotTypeReferencesLens(lineNumber: number, line: string): CodeLens {
     let slotType = line
       .slice(line.search(':')+1)
@@ -84,5 +84,18 @@ export class JbeamCodeLensProvider implements CodeLensProvider {
         });
       }});
     return count;
+  }
+  findLineContaining(s: string): number {
+    let textContent = this.document?.getText();
+    if (!textContent) return -1;
+    let lines = textContent.split("\n");
+    let lineCount = lines.length;
+    for (let i = 0; i < lineCount; i++) {
+      let line = lines[i];
+      if (line.includes(s)) {
+        return i;
+      }
+    }
+    return -1;
   }
 }
