@@ -1,7 +1,7 @@
 {
     "name": "jbeam-syntax",
     "displayName": "Jbeam Syntax",
-    "version": "0.5.1",
+    "version": "0.5.2",
     "description": "A very basic syntax highlighter for BeamNG .jbeam files",
     "publisher": "useful-artifacts",
     "private": true,
@@ -26,7 +26,10 @@
     "categories": [
         "Programming Languages"
     ],
-    
+    "activationEvents": [
+        "onLanguage:jbeam"
+    ],
+    "main": "./out/src/extension.js",
     "icon": "assets/logo.png",
     "engines": {
         "vscode": "^1.80.0"
@@ -35,10 +38,18 @@
         "languages": [
             {
                 "id": "jbeam",
-                "aliases": ["Jbeam", "jbeam"],
-                "extensions": [".jbeam"],
+                "aliases": [
+                    "Jbeam",
+                    "jbeam"
+                ],
+                "extensions": [
+                    ".jbeam"
+                ],
                 "configuration": "./language-configuration.json",
-                "icon": {"light": "./assets/jbeam_icon_universal.png", "dark": "./assets/jbeam_icon_universal.png"}
+                "icon": {
+                    "light": "./assets/jbeam_icon_universal.png",
+                    "dark": "./assets/jbeam_icon_universal.png"
+                }
             }
         ],
         "grammars": [
@@ -55,9 +66,6 @@
             }
         ]
     },
-    "extensionDependencies": [
-        "PKief.material-icon-theme"
-    ],
     "simple-git-hooks": {
         "pre-commit": "",
         "pre-push": ""
